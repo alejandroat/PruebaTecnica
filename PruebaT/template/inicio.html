@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>{% block titulo %}Peliculas{% endblock titulo %}</title>
+</head>
+<body>
+	{% block cuerpo %}
+	<h1>Peliculas Disponibles</h1>
+	<p></p>
+	<table border="3",>
+		<thead>
+			<tr>
+				<th>Pelicula</th>
+				<th>Opcion</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for pelicula in peliculas %}
+				<tr>
+					<td>{{ pelicula.nombre }}</td>
+					<td><a href="{% url 'editarpelicula' pelicula.id %}">EDITAR</a> <a href="{% url 'eliminarpelicula' pelicula.id %}">ELIMINAR</a></td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<h1>Tickets Usados</h1>
+	<p></p>
+	<table border="3",>
+		<thead>
+			<tr>
+				<th>Numero</th>
+				<th>Pelicula</th>
+				<th>Precio</th>
+				<th>Opcion</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for ticket in tickets %}
+				<tr>
+					<td>{{ ticket.id }}</td>
+					<td>{{ ticket.pelicula }}</td>
+					<td>{{ ticket.precio }}</td>
+					<td><a href="{% url 'editarticket' ticket.id %}">EDITAR</a> <a href="{% url 'eliminarticket' ticket.id %}">ELIMINAR</a></td>
+				</tr>
+			{% endfor %}
+		</tbody>
+		{% endblock cuerpo %}
+	</table>
+</body>
+</html>
